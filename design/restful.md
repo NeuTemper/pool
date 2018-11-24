@@ -26,30 +26,27 @@ REST的通常被译成“表现层状态转化”，听起来比较生涩，要�
     REST省略了主语表现层指的是“资源”表现层。所谓"资源"，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，是一个具体的存在形式。可以用一个URI指向它，每种资源对应一个特定的URI(资源的唯一标识)。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符
 - ### Representation(表现层)
     表现层指的是资源的表现形式，HTTP的[Content-Type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type)实体头部用于指示资源的MIME类型 [media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)，常用的type如下
-    
-    
-        text/plain
-        text/html
-        image/jpeg
-        image/png
-        audio/mpeg
-        audio/ogg
-        audio/*
-        video/mp4
-        application/*
-        application/json
-        application/xml
-        application/javascript
-        application/octet-stream
+    - text/plain
+    - text/html
+    - image/jpeg
+    - image/png
+    - audio/mpeg
+    - audio/ogg
+    - audio/*
+    - video/mp4
+    - application/*
+    - application/json
+    - application/xml
+    - application/javascript
+    - application/octet-stream
 - ### State Transfer(状态转化)
     就是客户端和服务器互动的一个过程，由于HTTP是无状态的，资源状态是维护在服务端的，在互动过程中涉及到数据和状态的变化, 这种变化叫做状态转换。
 资源是唯一的，对资源的状态改变使用的HTTP动词的对应语义实现对资源数据的增(PUT)删(DELETE)改(PUT/PATCH)查(GET)
 ## RESTful
-    REST是一种软件架构风格，RESTful是遵循REST架构风格的(一种实现)
+REST是一种软件架构风格，RESTful是遵循REST架构风格的(一种实现)
 ## 如何设计restful API
 - ### 通讯协议使用HTTPs
 - ### 合理设计uri
-
 
         https://example.com/api/books 获取所有书
         https://example.com/api/books 添加一本书
@@ -94,17 +91,17 @@ REST的通常被译成“表现层状态转化”，听起来比较生涩，要�
 
 ## restful设计误区
    - ### URI包含动词
-    
-            https://example.com/appName/getBooks 获取所有书
-            https://example.com/appName/addBooks 添加一本书
-            https://example.com/appName/updateBooks/:bookId 修改一本书
-            https://example.com/appName/deleteBooks/:bookId 删除一本书
+   
+   
+       https://example.com/appName/getBooks 获取所有书
+       https://example.com/appName/addBooks 添加一本书
+       https://example.com/appName/updateBooks/:bookId 修改一本书
+       https://example.com/appName/deleteBooks/:bookId 删除一本书
    - ### 版本号放在URI中
-   
-            https://api.example.com/v1/
-        
+           https://api.example.com/v1/
+            
        github的开发文档吗描述了版本号要放在HTTP头部信息中
-   
+       
            curl https://api.github.com/users/technoweenie -I
            HTTP/1.1 200 OK
            X-GitHub-Media-Type: github.v3
@@ -127,42 +124,46 @@ REST的通常被译成“表现层状态转化”，听起来比较生涩，要�
     使异构系统间的通信变得简单
 ## 开源框架对REST的支持
 - ### SpringMVC  
-        @RequestMapping(value = "/getBooks", method = {RequestMethod.GET, RequestMethod.POST})
-      
-        public enum RequestMethod {
-            GET,
-            HEAD,
-            POST,
-            PUT,
-            PATCH,
-            DELETE,
-            OPTIONS,
-            TRACE;
-        
-            private RequestMethod() {
+
+
+    ```java  
+            @RequestMapping(value = "/getBooks", method = {RequestMethod.GET, RequestMethod.POST})
+            
+            public enum RequestMethod {
+                GET,
+                HEAD,
+                POST,
+                PUT,
+                PATCH,
+                DELETE,
+                OPTIONS,
+                TRACE;
+                private RequestMethod() {
+                }
             }
-        }
-        
+            
 springMVC是提供不同的请求方式的，但是很多时候并没有被使用
 - ### Jersey
-    
-        @Path("/myResource")
-        public class SomeResource {
-            @GET
-            @Consumes("text/plain")
-            @Produces({"application/xml", "application/json"})
-            public String doGetAsPlainText() {
-                ...
-            }
-         
-            @GET
-            @Produces("text/html")
-            public String doGetAsHtml() {
-                ...
-            }
-        }
 
-- #### @Path("/myResource") 指定访问路径
-- #### @Consumes 注释代表的是一个资源可以接受的 MIME 类型
-- #### @Produces 注释代表的是一个资源可以返回的 MIME 类型
+
+    ```java  
+            @Path("/myResource")
+            public class SomeResource {
+                @GET
+                @Consumes("text/plain")
+                @Produces({"application/xml", "application/json"})
+                public String doGetAsPlainText() {
+                    ...
+                }
+             
+                @GET
+                @Produces("text/html")
+                public String doGetAsHtml() {
+                    ...
+                }
+            }
+                    
 [Jersey](https://jersey.github.io/documentation/latest/jaxrs-resources.html#d0e2129)在REST方面支持的更加友好
+- @Path("/myResource") 指定访问路径
+- @Consumes 注释代表的是一个资源可以接受的 MIME 类型
+- @Produces 注释代表的是一个资源可以返回的 MIME 类型
