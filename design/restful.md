@@ -93,10 +93,10 @@ REST是一种软件架构风格，RESTful是遵循REST架构风格的(一种实�
    - ### URI包含动词
    
    
-       https://example.com/appName/getBooks 获取所有书
-       https://example.com/appName/addBooks 添加一本书
-       https://example.com/appName/updateBooks/:bookId 修改一本书
-       https://example.com/appName/deleteBooks/:bookId 删除一本书
+           https://example.com/appName/getBooks 获取所有书
+           https://example.com/appName/addBooks 添加一本书
+           https://example.com/appName/updateBooks/:bookId 修改一本书
+           https://example.com/appName/deleteBooks/:bookId 删除一本书
    - ### 版本号放在URI中
            https://api.example.com/v1/
             
