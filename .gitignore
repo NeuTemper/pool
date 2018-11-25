@@ -1,0 +1,17 @@
+.classpath
+.settings
+eclipse
+.project
+*target/
+.svn
+*.iml
+*.ipr
+*.svn/
+*.idea/
+.iws*.iws
+*.iws
+*.bak
+*.log
+.DS_Store
+*.db
+.idea/workspace.xml
