@@ -163,6 +163,6 @@ springMVC是提供不同的请求方式的，但是很多时候并没有被使�
         }
 
 - #### @Path("/myResource") 指定访问路径
-- #### @Consumes 注释代表的是一个资源可以接受的 MIME 类型。
+- #### @Consumes 注释代表的是一个资源可以接受的 MIME 类型
 - #### @Produces 注释代表的是一个资源可以返回的 MIME 类型
 [Jersey](https://jersey.github.io/documentation/latest/jaxrs-resources.html#d0e2129)在REST方面支持的更加友好
