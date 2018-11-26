@@ -104,7 +104,8 @@ REST是一种软件架构风格，RESTful是遵循REST架构风格的(一种实�
 - 解耦使异构系统间的通信变得简单
 ## 开源框架对REST的支持
 ### SpringMVC  
-       @RequestMapping(value = "/getBooks", method = {RequestMethod.GET, RequestMethod.POST})
+```java
+        @RequestMapping(value = "/getBooks", method = {RequestMethod.GET, RequestMethod.POST})
        
         public enum RequestMethod {
             GET,
@@ -118,23 +119,26 @@ REST是一种软件架构风格，RESTful是遵循REST架构风格的(一种实�
             private RequestMethod() {
             }
         }
-            
+```
 springMVC是提供不同的请求方式的，但是很多时候并没有被使用
 ### Jersey
+```java
         @Path("/myResource")
         public class SomeResource {
              @GET
              @Consumes("text/plain")
              @Produces({"application/xml", "application/json"})
              public String doGetAsPlainText() {
-                  ...
+                  // ...
              }    
              @GET
              @Produces("text/html")
              public String doGetAsHtml() {
-                  ...
+                  // ...
              }
          }
+```
+
      
 [Jersey](https://jersey.github.io/documentation/latest/jaxrs-resources.html#d0e2129)在REST方面支持的更加友好
 - @Path("/myResource") 指定访问路径
