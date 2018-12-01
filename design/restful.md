@@ -17,7 +17,7 @@ REST的通常被译成“表现层状态转化”，听起来比较生涩，要�
 - Resources(资源)<br>
     REST省略了主语表现层指的是“资源”表现层。所谓"资源"，就是网络上的一个实体，或者说是网络上的一个具体信息。它可以是一段文本、一张图片、一首歌曲、一种服务，是一个具体的存在形式。可以用一个URI指向它，每种资源对应一个特定的URI(资源的唯一标识)。要获取这个资源，访问它的URI就可以，因此URI就成了每一个资源的地址或独一无二的识别符
 - Representation(表现层)<br>
-    表现层指的是资源的表现形式，HTTP的[Content-Type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type)实体头部用于指示资源的MIME类型 [media type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)，常用的type如下
+    表现层指的是资源的表现形式，HTTP的[Content-Type](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Content-Type)实体头部用于指示资源的 [MIME Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types)，常用的type如下
     - text/plain
     - text/html
     - image/jpeg
