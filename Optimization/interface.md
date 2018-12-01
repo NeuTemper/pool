@@ -5,7 +5,7 @@
         // 间隔的其他执行语句
         str = str ＋ user.getName();
     ```
-    每一条语句都会生成一个新的`StrngBuilder`对象
+    每一条语句都会生成一个新的`StringBuilder`对象
 - Log记录主动用StringBuilder拼接替换{}的方式
     ```java
     public final class MessageFormatter {
