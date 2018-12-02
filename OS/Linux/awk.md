@@ -81,35 +81,24 @@ $ awk [ -F re] [parameter...] ['pattern {action}' ] [-f progfile][in_file...]
 
 #### e.g
 
-- 查找包含`li`的行
-    ```bash
-    $ awk '/li/ { print $0 }' data
-    ```
-- 查找大于80个字符的行
-    ```bash
-    $ awk 'length($0) > 80' data
-    ```
-- 输出最长行的长度
-    下方示例包括`END`，表示其在所有输入读取之后执行。相反的`BEGIN`表示在所有输入执行之前执行。
-    ```bash
-    $ awk '{ if (length$(0) > max) max = length($0) } END { print max }' data
-    ```
-- 输出起码拥有一个域的行
-    ```bash
-    $ awk 'NF > 0' data
-    ```
-- 输出7个0-100的随机数
-    ``` bash
-    $ awk 'BEGIN { for (i=1; i<=7; i++) print int(101 * rand()) }'
-    ```
-- 输出所有用户名
-    ```bash
-    $ awk -F: '{ print $1 }' /etc/passwd | uniq | sort
-    ```
-- 使用`,`进行分割
-    ```bash
-    $ awk 'BEGIN{FS=","} {print $1,$2}' 
-    ```
+下方示例包括`END`，表示其在所有输入读取之后执行。相反的`BEGIN`表示在所有输入执行之前执行。
+
+```bash
+# 查找包含`li`的行
+$ awk '/li/ { print $0 }' data
+# 查找大于80个字符的行
+$ awk 'length($0) > 80' data
+# 输出最长行的长度
+$ awk '{ if (length$(0) > max) max = length($0) } END { print max }' data
+# 输出起码拥有一个域的行
+$ awk 'NF > 0' data
+# 输出7个0-100的随机数
+$ awk 'BEGIN { for (i=1; i<=7; i++) print int(101 * rand()) }'
+# 输出所有用户名
+$ awk -F: '{ print $1 }' /etc/passwd | uniq | sort
+# 使用`,`进行分割
+$ awk 'BEGIN{FS=","} {print $1,$2}'
+```
 
 ## 3. Expressions
 
