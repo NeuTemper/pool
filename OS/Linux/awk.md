@@ -68,7 +68,7 @@ $ awk [ -F re] [parameter...] ['pattern {action}' ] [-f progfile][in_file...]
     将所有的awk命令插入到一个单独文件，然后调用。下面例子中，`-f`加载`program-file`的awk脚本。
     ```bash
     awk -f program-file input-file1 input-file2
-    ``
+    ```
 
 - awk脚本
 
