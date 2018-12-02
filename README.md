@@ -16,6 +16,7 @@
 ### Framework
 #### spring
 - [bean的加载前篇](/Framework/Spring/bean的加载前篇.md)
+- [bean的加载后篇](/Framework/Spring/bean的加载后篇.md)
 
 ### Database
 #### Mysql
