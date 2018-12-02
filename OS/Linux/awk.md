@@ -280,6 +280,6 @@ else
 $ awk 'BEGIN {num = 10; if (num % 2 == 0) printf "%d 是偶数\n", num; else printf "%d 是奇数\n", num; }'
 ```
 
-## 6. 参考
+## 7. 参考
 - [awk入门教程-阮一峰](http://www.ruanyifeng.com/blog/2018/11/awk.html)
 - [The GNU Awk User’s Guide](https://www.gnu.org/software/gawk/manual/html_node/index.html#toc-Printing-Output)
