@@ -34,4 +34,5 @@
 
 ### OS
 #### Linux
+- [Linux基础(1)](/OS/Liunx/Linux-01.md)
 - [awk入门](/OS/Linux/awk.md)
