@@ -75,6 +75,9 @@ Linux发行版是在Linux内核之上的软件集合。发行版可以将服务�
 
 当存在多个不同章节相同词条的情况。可以通过`man $section $file`来查询需要的词条。
 
+#### tldr
+Linux系统的man帮助文件一般很长，使用github上一个项目，[安装tldr](https://github.com/tldr-pages/tldr)以提供简化的man文件
+
 ## directories & files
 
 #### 文件目录操作
