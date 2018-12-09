@@ -28,6 +28,7 @@
 
 ### Design
 - [RESTful](/design/restful.md)
+- [Design Patterns](/design/designPatterns.md)
 
 ### Optimization
 - [高并发接口优化](/Optimization/interface.md)
