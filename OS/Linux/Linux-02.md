@@ -163,3 +163,74 @@ $ ls f?le[ab][55]
 $ ls file[0-9][A-Z][a-z]
 ```
 
+#### I/O redirection
+Unix命令行的一个强大功能是使用输入/输出重定向和管道。
+
+#### stdin / stdout / stderr
+命令行包括三种流，分别是输入、输出以及错误流。在Linux中表现为`stdin`(stream 0), `stdout`(stream 1)以及`stderr`(stream 2)。其关系如下图所示
+![avatar](./Linux-stream.png)
+
+#### Output Redirection
+通常，`stdin`是从键盘传入，而其他两种流显示在屏幕上。没有明显的区别。所以可以将此两种流区分开重定向显示。
+##### > && >>
+通常可以将`stdout`使用`>`来重定向到文件中。`>`实际上是`1>`的缩写，表示将`stdout`重定向到某处。而使用`>`的情况，其**输出文件会被覆盖**。假如命令失败了，文件也会被清除。
+
+> 可以通过`$ set -o noclobber`来设置Linux，使得不能覆盖存在数据的文件。而使用`>|`来进行操作可以覆盖掉`noclobber`强制操作。
+
+e.g.
+```bash
+$ echo Hello World > hello.txt
+```
+
+> 在执行参数0之前，bash通常会有效的从命令行中删除重定向。所以如下的例子中只包含两个参数(echo与hello)
+
+```bash
+$ echo hello > hello.txt
+```
+
+而对比`>`来说，`>>`操作符可以将流添加到相应文件的尾部。
+
+##### error redirection
+通过`2>`来重定向错误流，可以有效的防止刷屏时错误被刷掉而错失信息。例如我们将正常输出输出到文件而将错误输出输出到`/dev/null`中
+```bash
+$ find / > out.txt 2> /dev/null
+```
+
+##### 2>&1
+通过这个操作符可以将`stderr`重定向到`stdout`中。这个语法的意思是将`stderr`的流合并到`stdout`中。在多种流同时出现时，按照其顺序判断。而通过`&>`可以将`stderr`与`stdout`合并为一个流到一个文件
+```bash
+# 将正常流与错误流输入到一个文件中
+$ find / > allfiles_and_error.txt 2>&1
+# 下面虽然使用了2>&1 但是只是将stdout重定向到了hello.txt。标准错误流在标准流之前已经制作了副本
+$ ls 2>&1 > hello.txt
+# 合并正常流与错误流
+$ echo file42 &> out_and_err 
+```
+
+##### stream and pipes
+默认情况下，在命令行上使用管道时，不能在`stderr`内部进行`grep`，因为只传递了`stdout`。但是可以通过`2>&1`来进行操作
+```bash
+# 三个文件都不存在，报错中会展示三个名字，但是grep是没有效果的
+$ rm file42 file33 file1201 | grep file42
+# 2>&1合并为一个流
+$ rm file42 file33 file1201 2>&1 | grep file42
+# 无法直接交换stdout与stderr(会输出FILE42，因为还是stdout的流)
+$ echo file42 2>&1 1>&2 | sed 's/file42/FILE42/' 
+# 通过第三个流来交换stdout与stderr
+$ rm file42 3>&1 1>&2 2>&3 | sed 's/file42/FILE42/'
+```
+
+#### Input Redirection
+
+##### < && << && <<<
+
+相对的，通过`<`符号与`<<`符号可以完成相反的重定向输出流的工作。`<`可以将`stdin`流输出到屏幕，而`<<`的作用是在于附加输出，直到碰到某个中止信号(通常是EOF)，也可以使用Ctrl-D调用。`<<<`被称为`here string`，其作用是将字符串直接传给某个程序。他的作用在于调用的进程少了一个。
+
+```bash
+# 输出hello.txt内容到屏幕
+$ cat < hello.txt
+# 持续输出text.txt文件直到遇见EOF
+$ cat <<EOF > text.txt
+# 对字符串调用helloworld
+$ base64 <<< helloworld
+```
