@@ -163,7 +163,7 @@ $ ls f?le[ab][55]
 $ ls file[0-9][A-Z][a-z]
 ```
 
-#### I/O redirection
+## I/O redirection
 Unix命令行的一个强大功能是使用输入/输出重定向和管道。
 
 #### stdin / stdout / stderr
